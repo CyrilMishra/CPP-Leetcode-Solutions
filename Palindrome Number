@@ -1,0 +1,36 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        stack<int>check ;
+        if(x<0){
+            return false ;
+        }
+        int n = 0,t=x;
+        while(t>0){
+            t/=10 ;
+            n++ ;
+        }
+        if(n==1){
+            return true; 
+        }
+        for(int i=0,t=x;i<n;i++){
+            if(n&1 && n/2 == i){
+                t/=10 ;
+                continue ;
+            }
+            int rem = t%10 ;
+            if(i<n/2){
+                check.push(rem) ;
+            }
+            else{
+                if(rem != check.top()){
+                    cout<< rem<<" "<< check.top() <<"\n" ;
+                    return false ;
+                }
+                check.pop() ;
+            }
+            t/=10 ;
+        }
+        return true ;
+    }
+};
