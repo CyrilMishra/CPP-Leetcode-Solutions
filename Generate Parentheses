@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<string> v;
+    void generate(int o,int c,string op)
+    {
+        if(o==0 && c==0)
+        {
+            v.push_back(op);
+            return;
+        }
+        string op1 = op;
+        string op2 = op;
+        if(o!=0)
+        {
+            op1.push_back('(');
+            generate(o-1,c,op1);
+        }
+        if(o<c)
+        {
+            op2.push_back(')');
+            generate(o,c-1,op2);
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        string op="";
+        generate(n,n,op);
+        return v;
+    }
+};
